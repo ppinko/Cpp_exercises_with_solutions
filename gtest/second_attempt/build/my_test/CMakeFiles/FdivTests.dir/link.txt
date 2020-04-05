@@ -1,0 +1,1 @@
+/usr/bin/g++  -g   CMakeFiles/FdivTests.dir/FdivTests.cpp.o  -o FdivTests  ../lib/libgtest_maind.a -lmain ../libfdiv.a ../lib/libgtestd.a -lpthread 

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libgtest_guide.a  CMakeFiles/gtest_guide.dir/gtest_guide.cpp.o
+/usr/bin/ranlib libgtest_guide.a

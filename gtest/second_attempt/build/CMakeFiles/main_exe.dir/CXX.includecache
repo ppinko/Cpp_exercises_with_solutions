@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/devlx/all/c++/exercises/gtest/second_attempt/fdiv.cpp
+fdiv.hpp
+/home/devlx/all/c++/exercises/gtest/second_attempt/fdiv.hpp
+
+/home/devlx/all/c++/exercises/gtest/second_attempt/fdiv.hpp
+
+/home/devlx/all/c++/exercises/gtest/second_attempt/main.cpp
+fdiv.hpp
+/home/devlx/all/c++/exercises/gtest/second_attempt/fdiv.hpp
+iostream
+-
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20200328-1726-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.16.4"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="localhost.localdomain"
+	OSRelease="5.5.10-200.fc31.x86_64"
+	OSVersion="#1 SMP Wed Mar 18 14:21:38 UTC 2020"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="60"
+	ProcessorCacheSize="3072"
+	NumberOfLogicalCPU="4"
+	NumberOfPhysicalCPU="2"
+	TotalVirtualMemory="7995"
+	TotalPhysicalMemory="7861"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="2904.88"
+	>
+	<Testing>
+		<StartDateTime>Mar 28 18:51 CET</StartDateTime>
+		<StartTestTime>1585417871</StartTestTime>
+		<TestList>
+			<Test>./my_test/FdivTests</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>FdivTests</Name>
+			<Path>./my_test</Path>
+			<FullName>./my_test/FdivTests</FullName>
+			<FullCommandLine>/home/devlx/all/c++/exercises/gtest/second_attempt/build/my_test/FdivTests</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.00340273</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/devlx/all/c++/exercises/gtest/second_attempt/build/my_test/FdivTests</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyNkMFOwzAMhu95Ch9XTU3gATggDXZA2lAHp6qaQuqVSIkzJW7Z49Mu09gQSPtPTv5P/m1XPZGlDry2NCtgF4MH9Rk8qhYHd1DaOWXmc4UHjMYmTKpjTKwSmkDtVjOj37PqQugcHp2LMkWT8e3UXhoj6oezGqhO2fcwMTn7VKfeMkpRl2c1sHThQ7vsIw02BvJII4tc9vtf8GXP59YOb+MriRqq9xUc1fx8y52NiRd2GP2s9cufPszuwKfihqRMAgfWrhC37cGoY9mGL7q+0n/XgahJXueM478+bjZPi2m9zErxDepzmdo=</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Mar 28 18:51 CET</EndDateTime>
+		<EndTestTime>1585417871</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

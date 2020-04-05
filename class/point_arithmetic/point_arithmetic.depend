@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1584212983 source:/home/devlx/all/c++/hackerrank/class/my_own_classes/point/point_arithmetic/main.cpp
+	<iostream>
+	"Points.h"
+
+1584213543 /home/devlx/all/c++/hackerrank/class/my_own_classes/point/point_arithmetic/include/Points.h
+	<iostream>
+	<vector>
+
+1584213557 source:/home/devlx/all/c++/hackerrank/class/my_own_classes/point/point_arithmetic/src/Points.cpp
+	"Points.h"
+

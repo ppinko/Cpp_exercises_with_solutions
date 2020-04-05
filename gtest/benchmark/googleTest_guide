@@ -1,0 +1,143 @@
+Introduction to Google Test and CMake
+
+Prerequisites:
+- Visual Studio Code 
+- CMake installed locally on the OS
+- Visual Studo Code CMakeTools extension
+
+1. clone googletest repo to a folder with a cpp souce code 
+
+git clone https://github.com/google/googletest.git
+
+2. Create CMakeLists.txt in the main directory where our source code is
+
+cmake_minimum_required(VERSION 3.16)			# seting version of CMake
+
+set(This gtest_guide)					# setting global variable 'This' equals to gtest_guide
+
+project(${This} C CXX)					# setting project name with compiled languages 
+							# ${...} - dereferencing global variable
+
+set(CMAKE_C_STANDARD 99)				# setting C standard
+set(CMAKE_CXX_STANDARD 11)				# setting C++ standard
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)		# initialize the POSITION_INDEPENDENT_CODE
+
+enable_testing()					# enable testing for current directory and below
+
+add_subdirectory(googletest)				# add a subdirectory to the build (directory with googletest)
+
+set(Headers						# setting global variable headers
+    gtest_guide.hpp
+)
+
+set(Sources						# setting global variable sources
+    gtest_guide.cpp
+)
+
+add_library(${This} STATIC ${Sources} ${Headers})	# add a library to the project using the specified source files
+
+add_subdirectory(test)					# add a subdirectory to the build (directory with our tests)
+
+
+3. Create CMakeLists.txt in the directory for our tests
+
+cmake_minimum_required(VERSION 3.16)
+
+set(This ExampleTests)
+
+set(Sources
+    ExampleTests.cpp
+)
+
+add_executable(${This} ${Sources})			# add an executable to the project using the specified source files
+target_link_libraries(${This} PUBLIC			# specify libraries or flags to use when linking a given target and/or its dependents
+    gtest_main						# necesarry for carrying out gtest
+    gtest_guide					# my file with source code
+)
+
+add_test(						# add a test to the project to be run by ctest
+    NAME ${This}					# add a test called ${This} = ExampleTests 
+    COMMAND ${This}					# specify the test command-line. If <command> specifies an executable target (created 
+							by add_executable()) it will automatically be replaced by the location of the executable 
+							created at build time.
+)
+
+4. Example test
+
+a) test file - ExampleTests.cpp
+
+#include "../gtest_guide.hpp"			# include header file
+#include <gtest/gtest.h>			# include gtest
+
+bool f() {
+    return true;
+}
+
+TEST(ExampleTests, DemonstrateGTestMacros){	# ExampleTests - suite test name, DemonstrateGTestMacros - test name
+    EXPECT_TRUE(true);				# EXPECT_TRUE(variable)
+    const bool result = f();			
+    EXPECT_EQ(true, result) << "Hello world!";	# EXPECT_EQ(expected_val, compared_val)
+}
+
+TEST(ExampleTests, MAC) {
+    int x = 42;
+    int y = 16;
+    int sum = 100;
+    int oldSum = sum;
+    int expectedNewSum = oldSum + x * y;
+    EXPECT_EQ(
+        expectedNewSum,
+        MAC(x, y, sum)
+    );
+    EXPECT_EQ(
+        expectedNewSum,
+        sum
+    );
+}
+
+TEST(ExampleTests, Square){
+    int x = 5;
+    int expectedSquare = x * x;
+    EXPECT_EQ(
+        expectedSquare,
+        Square(x)
+    );
+}
+
+b) header file - gtest_guide.hpp
+
+#ifndef GTEST_GUIDE_HPP
+#define GTEST_GUIDE_HPP
+
+int MAC(int x, int y, int& sum);
+
+int Square(int x);
+
+#endif // GTEST_GUIDE_HPP
+
+c) source code file - gtest_guide.cpp
+
+#include "gtest_guide.hpp"
+
+int MAC(int x, int y, int& sum){
+    sum += x * y;
+    return sum;
+}
+
+int Square(int x){
+    return x * x;
+}
+
+5. Running a gtest - the same as any other cpp executable eg. ./build/test/ExampleTests
+
+
+#include "fdiv.hpp"
+
+#include <iostream>
+
+int main(){
+    int x = 5.0;
+    int y = 4.0;
+    std::cout << float_div(x,y) << std::endl;
+    return 0;
+}

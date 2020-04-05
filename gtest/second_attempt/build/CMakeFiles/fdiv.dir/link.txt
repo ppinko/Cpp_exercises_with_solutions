@@ -1,0 +1,2 @@
+/usr/bin/ar qc libfdiv.a  CMakeFiles/fdiv.dir/main.cpp.o CMakeFiles/fdiv.dir/fdiv.cpp.o
+/usr/bin/ranlib libfdiv.a

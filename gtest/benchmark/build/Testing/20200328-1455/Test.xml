@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site BuildName="(empty)"
+	BuildStamp="20200328-1455-Experimental"
+	Name="(empty)"
+	Generator="ctest-3.16.4"
+	CompilerName=""
+	CompilerVersion=""
+	OSName="Linux"
+	Hostname="localhost.localdomain"
+	OSRelease="5.5.10-200.fc31.x86_64"
+	OSVersion="#1 SMP Wed Mar 18 14:21:38 UTC 2020"
+	OSPlatform="x86_64"
+	Is64Bits="1"
+	VendorString="GenuineIntel"
+	VendorID="Intel Corporation"
+	FamilyID="6"
+	ModelID="60"
+	ProcessorCacheSize="3072"
+	NumberOfLogicalCPU="4"
+	NumberOfPhysicalCPU="2"
+	TotalVirtualMemory="7995"
+	TotalPhysicalMemory="7861"
+	LogicalProcessorsPerPhysical="2"
+	ProcessorClockFrequency="2986.72"
+	>
+	<Testing>
+		<StartDateTime>Mar 28 16:34 CET</StartDateTime>
+		<StartTestTime>1585409694</StartTestTime>
+		<TestList>
+			<Test>./test/ExampleTests</Test>
+		</TestList>
+		<Test Status="passed">
+			<Name>ExampleTests</Name>
+			<Path>./test</Path>
+			<FullName>./test/ExampleTests</FullName>
+			<FullCommandLine>/home/devlx/all/c++/exercises/gtest/benchmark/build/test/ExampleTests</FullCommandLine>
+			<Results>
+				<NamedMeasurement type="numeric/double" name="Execution Time">
+					<Value>0.00299496</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="numeric/double" name="Processors">
+					<Value>1</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Completion Status">
+					<Value>Completed</Value>
+				</NamedMeasurement>
+				<NamedMeasurement type="text/string" name="Command Line">
+					<Value>/home/devlx/all/c++/exercises/gtest/benchmark/build/test/ExampleTests</Value>
+				</NamedMeasurement>
+				<Measurement>
+					<Value encoding="base64" compression="gzip">eJyNUcFOwzAMvfcrfFw1tQFx5jCxaQc0QC2cqgplmekqEmck6ejn0zRTRZHo+k7J8/N7sp01RDVVoHhNixg+jFbAjlohO+BZtoxLycRyybBFI2qLllUOrWN7JHFU3HyySutKYk/+elojgvLdO6dCRMX9gBKyS+wdeI0Nubf9B2xTO0yjIhlQwlbqPZehjnSujSaF1GnRJc3pj3hkumm5Okl89UxUQPb2BD3KUSVdo9JkneEOt57ZcWG0bwh4fpzXAIsbUDaeCNqtHiZcu+p1i/yr4QYnXIJgMJq1m6AGpx2XcTRv+w65SQ76m8bH/feoYDil46BuiJdVnm/WfspLYxr9AB/R0m4=</Value>
+				</Measurement>
+			</Results>
+		</Test>
+		<EndDateTime>Mar 28 16:34 CET</EndDateTime>
+		<EndTestTime>1585409694</EndTestTime>
+		<ElapsedMinutes>0</ElapsedMinutes>
+	</Testing>
+</Site>

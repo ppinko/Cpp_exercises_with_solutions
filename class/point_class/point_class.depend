@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1584698104 source:/home/devlx/all/c++/hackerrank/point_class/main.cpp
+	<iostream>
+	"Point.h"
+	<iostream>
+	<vector>
+	<iomanip>
+	<memory>
+
+1584697809 source:/home/devlx/all/c++/hackerrank/point_class/src/Point.cpp
+	"Point.h"
+	<iostream>
+
+1584697809 /home/devlx/all/c++/hackerrank/point_class/include/Point.h
+	<iostream>
+
