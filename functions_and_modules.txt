@@ -1,0 +1,70 @@
+Modules:
+
+a) cmath:
+- pow
+- log2
+- sqrt
+- ceil
+- floor
+- sin
+- cos
+- tan
+- abs
+
+b) iostream:
+- cout
+- cin
+
+c) cctype:
+- isalnum
+- isalpha
+- isdigit
+- islower
+- isprint
+- ispunct
+- isspace
+- isupper
+- tolower
+- toupper
+
+d) string:
+- at
+- front
+- str.back()
+- empty
+- length/size
+- clear
+- insert
+- erase
+- push_back
+- str.pop_back()
+- append
+- compare
+- replace
+- substr
+- find
+- rfind
+- std::string::npos
+- stoi
+- stol
+- stof
+- stod
+- to_string
+- getline
+
+e) iterator:
+- begin / rbegin
+- end / rend
+- advance
+- next
+- prev
+- back_inserter
+- front_inserter
+
+f) algorithm
+- sort 
+- remove
+- set_intersection
+
+g) vector
+- push_back
