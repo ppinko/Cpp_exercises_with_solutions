@@ -23,15 +23,16 @@ duplicates("birthday") ➞ 0
 #include <string>
 #include <map>
 #include <cctype>
+#include <set>
 
 
 int duplicates(std::string str) {
 	std::map<char, int> char_freq {};
     for (char& c : str){
         auto it = char_freq.find(c);
-        if (isalpha(c) && it == char_freq.end())
+        if (it == char_freq.end())
             char_freq[c] = 1;
-        else if (isalpha(c) && it != char_freq.end())
+        else if (it != char_freq.end())
             char_freq[c] += 1;
     }
     int ans = 0;
@@ -43,8 +44,18 @@ int duplicates(std::string str) {
     return ans;
 }
 
+// Alternative solution
+
+int duplicates2(std::string str) 
+{
+	std::set<char> s (str.begin(), str.end());
+	return str.length() - s.size();
+}
+
+
 
 int main(){
     std::cout << duplicates("Hello World!") << std::endl;
+    std::cout << duplicates("The Quick Brown Fox Jumps Over the Lazy Dog") << std::endl;
     return 0;
 }
