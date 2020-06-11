@@ -12,8 +12,12 @@ https://edabit.com/challenge/ByqR9jKybjJy3ioZ4
 std::vector<std::string> danceConvert(std::string pin) {
 	std::vector<std::string> moves = {"Shimmy", "Shake", "Pirouette", "Slide", 
         "Box Step", "Headspin", "Dosado", "Pop", "Lock", "Arabesque"};
-	if (pin.size() != 4) 
-    std::vector<std::string> ans {};
+	std::vector<std::string> ans {};
+    if (pin.size() != 4){
+        ans.push_back("Invalid input.");
+        return ans;
+    }
+    
     int current {-1};
     for (char& c: pin){
         if (std::isdigit(c)){
