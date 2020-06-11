@@ -21,7 +21,6 @@ std::vector<int> replaceNextLargest(std::vector<int> arr) {
         auto it = std::find(sortedArr.begin(), sortedArr.end(), i);
         if (it == sortedArr.end() - 1) {
             answer.push_back(-1);
-            std::cout << "YEAP" << std::endl;
         }
         else {
             it++;
