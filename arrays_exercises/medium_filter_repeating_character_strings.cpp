@@ -54,19 +54,6 @@ std::vector<std::string> identicalFilter2(std::vector<std::string> arr) {
 	return output;
 }
 
-
-// Alternative solution 2
-
-std::vector<std::string> identicalFilter3(std::vector<std::string> arr) {
-	std::vector<std::string> result;
-	for(auto &str: arr)
-	{
-		    
-			result.push_back(str);
-	}
-	return result;
-}
-
 int main(){
     return 0;
 }
