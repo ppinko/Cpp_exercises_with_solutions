@@ -13,7 +13,6 @@ int minSwaps(std::string str) {
         else start_one++;
         index++;
     }
-    std::cout << "ones = " << start_one << " zeros = " << start_zero << "\n";
     return std::min(start_one, start_zero);
 }
 
