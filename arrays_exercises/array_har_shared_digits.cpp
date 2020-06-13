@@ -24,15 +24,6 @@ bool sharedDigits(std::vector<int> arr) {
 }
 
 int main(){
-    // std::vector<int> vec {2, 3, 4, 5, 6, 7};
-    // std::vector<int> vec {2, 3, 4, 5, 6, 7, 8};
-    // auto v = chunkify(vec, 3);
-    // for (auto i: v){
-    //     for (auto j: i){
-    //         std::cout << j << " ";
-    //     }
-    //     std::cout << "\n";
-    // }
     std::cout << "Success" << std::endl;
     return 0;
 }
