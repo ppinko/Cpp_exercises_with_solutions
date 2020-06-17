@@ -13,7 +13,7 @@ bool isParselTongue(std::string s) {
     std::string s_lower {};
     std::transform(s.begin(), s.end(), std::back_inserter(s_lower),
         [](char c) -> char {return std::tolower(c);});
-    std::cout << "s_lower = " << s_lower << std::endl;
+    // std::cout << "s_lower = " << s_lower << std::endl;
 	int index = s_lower.find_first_of('s', 0);
     while (index != -1){
         if (index == s_lower.size() - 1 || s_lower.at(index+1) != 's') return false;
