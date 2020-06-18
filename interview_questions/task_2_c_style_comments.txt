@@ -2,9 +2,12 @@ Task 2
 
 Problem-solving task
 
-C++ supports two kinds of comments, C-style comments (/* comment */) and C++ comments (// comment). C-style comments can span multiple lines, while C++ comments end at the end of the line.
+C++ supports two kinds of comments, C-style comments (/* comment */) and C++ comments (// comment). 
+C-style comments can span multiple lines, while C++ comments end at the end of the line.
 
-Write a small word processor that reads a C++ source file and replaces C-style comments with C++ comments, if possible. If a C-style comment does not end at the end of a line (ignoring whitespaces), it needs to be kept. For simplicity’s sake, C++ syntax rules are not to be considered, including nested comments.
+Write a small word processor that reads a C++ source file and replaces C-style comments with C++ comments, if possible. 
+If a C-style comment does not end at the end of a line (ignoring whitespaces), it needs to be kept. 
+For simplicity’s sake, C++ syntax rules are not to be considered, including nested comments.
 
 Example given:
 
