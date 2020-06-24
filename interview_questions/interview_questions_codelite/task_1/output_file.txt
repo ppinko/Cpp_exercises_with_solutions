@@ -1,0 +1,10 @@
+This line MUST be changed
+
+This line MUST be changed
+
+int main(int argc, char const* argv[]) // the entry function
+
+{
+This line shouldn't be changed
+  return 0;
+}

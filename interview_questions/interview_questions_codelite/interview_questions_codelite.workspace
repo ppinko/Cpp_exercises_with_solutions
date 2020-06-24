@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="interview_questions_codelite" Database="" Version="10000">
-  <Project Name="task_2" Path="task_1/task_1.project" Active="Yes"/>
+  <Project Name="task_2" Path="task_1/task_1.project" Active="No"/>
+  <Project Name="task_1_waves" Path="task_1_waves/task_1_waves.project" Active="Yes"/>
+  <Project Name="plotting" Path="plotting/plotting.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Environment/>
       <Project Name="task_2" ConfigName="Debug"/>
+      <Project Name="task_1_waves" ConfigName="Debug"/>
+      <Project Name="plotting" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Environment/>
       <Project Name="task_2" ConfigName="Release"/>
+      <Project Name="task_1_waves" ConfigName="Release"/>
+      <Project Name="plotting" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

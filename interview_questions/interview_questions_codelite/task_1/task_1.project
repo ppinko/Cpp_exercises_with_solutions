@@ -101,4 +101,7 @@
       </Completion>
     </Configuration>
   </Settings>
+  <Dependencies Name="Debug">
+    <Project Name="task_1_waves"/>
+  </Dependencies>
 </CodeLite_Project>
