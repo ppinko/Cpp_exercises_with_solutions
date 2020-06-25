@@ -2,15 +2,7 @@
 <Session Name="/home/devpyth/all/c++/Cpp_exercises_with_solutions/interview_questions/interview_questions_codelite/interview_questions_codelite.workspace">
   <int Value="0" Name="m_selectedTab"/>
   <wxString Value="/home/devpyth/all/c++/Cpp_exercises_with_solutions/interview_questions/interview_questions_codelite/interview_questions_codelite.workspace" Name="m_workspaceName"/>
-  <TabInfoArray Name="TabInfoArray">
-    <TabInfo>
-      <wxString Value="/home/devpyth/all/c++/Cpp_exercises_with_solutions/interview_questions/interview_questions_codelite/task_1_waves/main.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="14" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-  </TabInfoArray>
+  <TabInfoArray Name="TabInfoArray"/>
   <SerializedObject Name="m_breakpoints">
     <long Value="0" Name="Count"/>
   </SerializedObject>
