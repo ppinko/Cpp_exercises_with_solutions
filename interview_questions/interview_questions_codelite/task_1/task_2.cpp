@@ -46,10 +46,8 @@ int main() {
             }
             if (transformation) {
                 line.replace(pos_first, 2, "//");
-//                line.erase(std::remove(line.begin(), line.end(), "*/"), line.end());
+                line.replace(pos_second, 2, "");
                 out_file << line << std::endl;
-//                out_file << "THIS LINE MUST BE CHANGED" << std::endl;
-//                std::cout << "THIS LINE MUST BE CHANGED" << std::endl;
                 transformation = false;
             }
         }
@@ -61,31 +59,56 @@ int main() {
             buffer.push_back(line);
             }
         else if (flag && pos_second != -1){
+            buffer.push_back(line);
             if (pos_second + 1 == line.size() - 1){
-                out_file << "This line MUST be changed" << std::endl;
-//                std::cout << "This line MUST be changed" << std::endl;
+                for (int j = 0; j < buffer.size(); j++){
+                    if (j == 0){
+                        pos_first = buffer[j].find("/*");
+                        buffer[j].replace(pos_first, 2, "//");
+                        out_file << buffer[j] << std::endl;
+                        }
+                    else if (j == buffer.size() - 1){
+                        buffer[j].replace(pos_second, 2, "");
+                        out_file << "// " << buffer[j] << std::endl;
+                        }
+                    else {
+                        out_file << "// " << buffer[j] << std::endl;
+                        }
                 flag = false;
                 continue;
+                }
             }
             for (int i = pos_second + 2; i < line.size(); i++){
                 if (std::isprint(line[i])) {
-                    out_file << "This line shouldn't be changed" << std::endl;
-//                    std::cout << "This line shouldn't be changed" << std::endl;
+                    for (int j = 0; j < buffer.size(); j++){
+                        out_file << buffer[j] << std::endl;
+                    }
                     flag = false;
                     break;
                 }
                 transformation = true;
             }
             if (transformation) {
-                out_file << "THIS LINE MUST BE CHANGED" << std::endl;
-//                std::cout << "THIS LINE MUST BE CHANGED" << std::endl;
+                for (int j = 0; j < buffer.size(); j++){
+                    if (j == 0){
+                        pos_first = buffer[j].find("/*");
+                        buffer[j].replace(pos_first, 2, "//");
+                        out_file << buffer[j] << std::endl;
+                        }
+                    else if (j == buffer.size() - 1){
+                        buffer[j].replace(pos_second, 2, "");
+                        out_file << "// " << buffer[j] << std::endl;
+                        }
+                    else {
+                        out_file << "// " << buffer[j] << std::endl;
+                        }
                 transformation = false;
                 flag = false;
+                }
             }
-            }
+        }
         else {
             out_file << line << std::endl;
-//            std::cout << line << std::endl;
         }
     }
     in_file.close();

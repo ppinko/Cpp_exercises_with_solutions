@@ -1,4 +1,6 @@
-This line MUST be changed
+//
+// This is a sample C++ file.
+//  
 
 #include <stdio.h> // for printf 
 
