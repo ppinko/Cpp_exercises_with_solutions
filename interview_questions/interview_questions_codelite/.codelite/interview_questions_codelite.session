@@ -4,9 +4,9 @@
   <wxString Value="/home/devpyth/all/c++/Cpp_exercises_with_solutions/interview_questions/interview_questions_codelite/interview_questions_codelite.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="/home/devpyth/all/c++/Cpp_exercises_with_solutions/interview_questions/interview_questions_codelite/task_1/task_2.cpp" Name="FileName"/>
-      <int Value="24" Name="FirstVisibleLine"/>
-      <int Value="29" Name="CurrentLine"/>
+      <wxString Value="/home/devpyth/all/c++/Cpp_exercises_with_solutions/interview_questions/interview_questions_codelite/task_1_waves/main.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="63" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
