@@ -1,8 +1,8 @@
-/*
-This is a sample C++ file.
- */
+//
+// This is a sample C++ file.
+//  
 
-#include <stdio.h> /* for printf */
+#include <stdio.h> // for printf 
 
 int main(int argc, char const* argv[]) // the entry function
 {

@@ -63,7 +63,7 @@ int main() {
                     if (j == 0){
                         pos_first = buffer[j].find("/*");
                         buffer[j].replace(pos_first, 2, "//");
-                        out_file.push_back(line);
+                        out_file.push_back(buffer[j]);
                         }
                     else if (j == buffer.size() - 1){
                         buffer[j].replace(pos_second, 2, "");
