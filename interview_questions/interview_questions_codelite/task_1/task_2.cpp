@@ -7,15 +7,13 @@
 
 int main() {
     std::ifstream in_file;
-    std::ofstream out_file;
-    
     in_file.open("to_replace.cpp");
     if (!in_file) {
         std::cerr << "Problem opening file" << std::endl;
         return 1;
     }
     
-    out_file.open("output_file.txt");
+    std::vector<std::string> out_file {};
     
     std::vector<std::string> buffer {};
     std::string line{};
@@ -27,19 +25,19 @@ int main() {
         pos_second = line.find("*/");
 
         if (!flag && pos_first == -1){
-            out_file << line << std::endl;
+            out_file.push_back(line);
             } 
         
         else if (!flag && pos_first != -1 && pos_second != -1 && pos_second > pos_first){
             if (pos_second + 1 == line.size() - 1){
                 line.replace(pos_first, 2, "//");
                 line.replace(pos_second, 2, "");
-                out_file << line << std::endl;
+                out_file.push_back(line);
                 continue;
             }
             for (int i = pos_second + 2; i < line.size(); i++){
                 if (std::isprint(line[i])) {
-                    out_file << line << std::endl;
+                    out_file.push_back(line);
                     break;
                 }
                 transformation = true;
@@ -47,7 +45,7 @@ int main() {
             if (transformation) {
                 line.replace(pos_first, 2, "//");
                 line.replace(pos_second, 2, "");
-                out_file << line << std::endl;
+                out_file.push_back(line);
                 transformation = false;
             }
         }
@@ -65,14 +63,16 @@ int main() {
                     if (j == 0){
                         pos_first = buffer[j].find("/*");
                         buffer[j].replace(pos_first, 2, "//");
-                        out_file << buffer[j] << std::endl;
+                        out_file.push_back(line);
                         }
                     else if (j == buffer.size() - 1){
                         buffer[j].replace(pos_second, 2, "");
-                        out_file << "// " << buffer[j] << std::endl;
+                        buffer[j].insert(0, "// ");
+                        out_file.push_back(buffer[j]);
                         }
                     else {
-                        out_file << "// " << buffer[j] << std::endl;
+                        buffer[j].insert(0, "// ");
+                        out_file.push_back(buffer[j]);
                         }
                 flag = false;
                 continue;
@@ -81,7 +81,7 @@ int main() {
             for (int i = pos_second + 2; i < line.size(); i++){
                 if (std::isprint(line[i])) {
                     for (int j = 0; j < buffer.size(); j++){
-                        out_file << buffer[j] << std::endl;
+                        out_file.push_back(buffer[j]);
                     }
                     flag = false;
                     break;
@@ -93,14 +93,16 @@ int main() {
                     if (j == 0){
                         pos_first = buffer[j].find("/*");
                         buffer[j].replace(pos_first, 2, "//");
-                        out_file << buffer[j] << std::endl;
+                        out_file.push_back(buffer[j]);
                         }
                     else if (j == buffer.size() - 1){
                         buffer[j].replace(pos_second, 2, "");
-                        out_file << "// " << buffer[j] << std::endl;
+                        buffer[j].insert(0, "// ");
+                        out_file.push_back(buffer[j]);
                         }
                     else {
-                        out_file << "// " << buffer[j] << std::endl;
+                        buffer[j].insert(0, "// ");
+                        out_file.push_back(buffer[j]);
                         }
                 transformation = false;
                 flag = false;
@@ -108,10 +110,17 @@ int main() {
             }
         }
         else {
-            out_file << line << std::endl;
+            buffer.push_back(line);
         }
     }
     in_file.close();
-    out_file.close();
+        
+    std::ofstream output_file;
+    output_file.open("to_replace.cpp");
+    for (auto i: out_file){
+        std::cout << i << std::endl;
+        output_file << i << std::endl;
+        }
+    output_file.close();
     return 0;
 }
