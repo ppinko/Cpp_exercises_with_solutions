@@ -6,6 +6,23 @@
 
 // function prototype
 int convert_comments(std::string file_name);
+std::vector<int> counting_comments(std::string line);
+
+// function checking number of starting and closing comment symbol in one line
+std::vector<int> counting_comments(std::string line){
+    std::vector<int> counter {0, 0};
+    std::string start_comment {"/*"}, end_comment {"*/"};
+    int i {0};
+    while (i < line.size() - 1){
+        std::string temp = line.substr(i, 2);
+        if (temp == start_comment || temp == end_comment){
+            if (temp == start_comment) counter[0]++;
+            else counter[1]++;
+            i += 2;
+        } else i++;
+    }
+    return counter;
+}
 
 int convert_comments(std::string file_name){
     std::ifstream in_file;
@@ -23,17 +40,19 @@ int convert_comments(std::string file_name){
     std::string line{};
     bool flag {false};
     int pos_first {0}, pos_second {0};
+    
 
     while (std::getline(in_file, line)){
         pos_first = line.find("/*");
         pos_second = line.find("*/");
-        
         // lack of starting c-style comment symbol /* and flag equals false, copy original line
         if (!flag && pos_first == -1) 
             out_file.push_back(line);
         
         // checking one-line comments
         else if (!flag && pos_first != -1 && pos_second != -1){
+            std::vector<int> counter = counting_comments(line);
+            std::cout << counter[0] << " & " << counter[1] << std::endl;
             // if closing comment symbol */ at the end of line, then convert line
             if (pos_second + 1 == line.size() - 1){
                 line.replace(pos_first, 2, "//");
