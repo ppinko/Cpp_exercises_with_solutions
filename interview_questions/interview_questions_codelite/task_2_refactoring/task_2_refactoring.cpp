@@ -1,6 +1,19 @@
+// Problem-solving task
+//
+// C++ supports two kinds of comments, C-style comments (/* comment */)
+// and C++ comments (// comment). C-style comments can span multiple 
+// lines, while C++ comments end at the end of the line.
+//
+// Write a small word processor that reads a C++ source file and replaces 
+// C-style comments with C++ comments, if possible. If a C-style comment 
+// does not end at the end of a line (ignoring whitespaces), it needs to 
+// be kept. For simplicity’s sake, C++ syntax rules are not to be 
+// considered, including nested comments.
+
 /*
-
-
+ * ASSUMPTIONS:
+ * - for simplicity the cpp script modifying comments is located in the 
+ * same folder as script to modify
 */
 
 #include <fstream>
@@ -10,22 +23,22 @@
 #include <vector>
 
 // function prototype
-int convert_comments(std::string file_name);
 std::string one_line_comments(std::string line, int pos_start, int pos_end);
+int convert_comments(std::string file_name);
 
 std::string one_line_comments(std::string line, int pos_start, int pos_end){
-            if (pos_end + 1 != line.size() - 1){
-                // if closing comment symbol */ not at the end of line and printable
-                // objects behind closing comment symbol, then no conversion
-                for (int i = pos_end + 2; i < line.size(); i++){
-                    if (!std::isspace(line[i])) {
-                        return line;
-                    }
-                }
+    // if closing comment symbol */ not at the end of line and printable
+    // objects behind closing comment symbol, then no conversion        
+    if (pos_end + 1 != line.size() - 1){
+        for (int i = pos_end + 2; i < line.size(); i++){
+            if (!std::isspace(line[i])) {
+                return line;
             }
-            line.replace(pos_start, 2, "//");
-            line.replace(pos_end, 2, "");
-            return line;
+        }
+    }
+    line.replace(pos_start, 2, "//");
+    line.replace(pos_end, 2, "");
+    return line;
 }
 
 int convert_comments(std::string file_name){
@@ -52,7 +65,6 @@ int convert_comments(std::string file_name){
         // lack of starting c-style comment symbol /* and flag equals false, copy original line
         if (!flag && pos_start == -1) 
             out_file.push_back(line);
-        
         // checking one-line comments
         else if (!flag && pos_start != -1 && pos_end != -1 && pos_end > pos_start){
             std::string one_line = one_line_comments(line, pos_start, pos_end);
@@ -62,7 +74,7 @@ int convert_comments(std::string file_name){
         else {
             buffer.push_back(line);
             // if only starting c-style comment symbol /*, append line to buffer and activate
-            // flag marking start of c-style comment
+            // flag marking start of c-style multi-line comment
             if (!flag && pos_start != -1){
                 flag = true;
             }
