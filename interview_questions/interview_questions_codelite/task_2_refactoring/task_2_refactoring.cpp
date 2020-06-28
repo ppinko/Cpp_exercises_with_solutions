@@ -14,11 +14,7 @@ int convert_comments(std::string file_name);
 std::string one_line_comments(std::string line, int pos_start, int pos_end);
 
 std::string one_line_comments(std::string line, int pos_start, int pos_end){
-            // if closing comment symbol */ at the end of line, then convert line
-            if (pos_end + 1 == line.size() - 1){
-                line.replace(pos_start, 2, "//");
-                line.replace(pos_end, 2, "");
-            } else {
+            if (pos_end + 1 != line.size() - 1){
                 // if closing comment symbol */ not at the end of line and printable
                 // objects behind closing comment symbol, then no conversion
                 for (int i = pos_end + 2; i < line.size(); i++){
@@ -26,11 +22,9 @@ std::string one_line_comments(std::string line, int pos_start, int pos_end){
                         return line;
                     }
                 }
-                // if closing comment symbol */ not at the end of line, but no more
-                // printable objects behind closing comment symbol, then convert
-                line.replace(pos_start, 2, "//");
-                line.replace(pos_end, 2, "");
             }
+            line.replace(pos_start, 2, "//");
+            line.replace(pos_end, 2, "");
             return line;
 }
 
@@ -52,7 +46,6 @@ int convert_comments(std::string file_name){
     int pos_start {0}, pos_end {0};
     
     while (std::getline(in_file, line)){
-        line_no++;
         pos_start = line.rfind("/*");
         pos_end = line.rfind("*/");
     
