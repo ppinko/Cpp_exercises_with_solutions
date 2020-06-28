@@ -40,8 +40,10 @@ int convert_comments(std::string file_name){
     std::string line{};
     bool flag {false};
     int pos_start {0}, pos_end {0};
+    int line_no = -1;
     
     while (std::getline(in_file, line)){
+        line_no++;
         pos_start = line.find("/*");
         pos_end = line.find("*/");
     
@@ -86,27 +88,32 @@ int convert_comments(std::string file_name){
             // if only starting c-style comment symbol /*, append line to buffer and activate
             // flag marking start of c-style comment
             if (!flag && pos_start != -1){
+                std::cout << "First: " << line_no << std::endl;
                 flag = true;
             }
             // adding next comment line to buffer
             else if (flag && pos_end == -1){
+                std::cout << "Second: " << line_no << std::endl;
                 continue;
             }
             // checking closing line with */
             else {
-                if (pos_end + 1 == line.size() - 1){
+                if (pos_end + 1 != line.size() - 1){
                     for (int i = pos_end + 2; i < line.size(); i++){
-                        if (std::isprint(line[i])) {
+                        if (!std::isspace(line[i])) {
+                            std::cout << "Wrong line: " << line << " -> wrong element, i = " << i << " = " << line[i] << std::endl;
                             for (int j = 0; j < buffer.size(); j++){
                                 out_file.push_back(buffer[j]);
                             }
                             buffer.clear();
                             flag = false;
+                            std::cout << "Third: " << line_no << std::endl;
                             break;
                         }                
                     }
                 }
                 if (flag){
+                    std::cout << "Fourth: " << line_no << std::endl;
                     for (int j = 0; j < buffer.size(); j++){
                         if (j == 0){
                             pos_start = buffer[j].find("/*");
@@ -118,8 +125,8 @@ int convert_comments(std::string file_name){
                             buffer[j].insert(0, "// ");
                         }
                         out_file.push_back(buffer[j]);
-                        buffer.clear();
                     }
+                    buffer.clear();
                 }
                 flag = false;                
             }
