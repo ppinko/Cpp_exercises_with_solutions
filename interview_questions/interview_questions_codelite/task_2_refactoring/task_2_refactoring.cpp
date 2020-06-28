@@ -39,30 +39,30 @@ int convert_comments(std::string file_name){
     std::vector<std::string> buffer {};
     std::string line{};
     bool flag {false};
-    int pos_first {0}, pos_second {0};
+    int pos_start {0}, pos_end {0};
     
-
     while (std::getline(in_file, line)){
-        pos_first = line.find("/*");
-        pos_second = line.find("*/");
+        pos_start = line.find("/*");
+        pos_end = line.find("*/");
+    
         // lack of starting c-style comment symbol /* and flag equals false, copy original line
-        if (!flag && pos_first == -1) 
+        if (!flag && pos_start == -1) 
             out_file.push_back(line);
         
         // checking one-line comments
-        else if (!flag && pos_first != -1 && pos_second != -1){
+        else if (!flag && pos_start != -1 && pos_end != -1){
             std::vector<int> counter = counting_comments(line);
             std::cout << counter[0] << " & " << counter[1] << std::endl;
             // if closing comment symbol */ at the end of line, then convert line
-            if (pos_second + 1 == line.size() - 1){
-                line.replace(pos_first, 2, "//");
-                line.replace(pos_second, 2, "");
+            if (pos_end + 1 == line.size() - 1){
+                line.replace(pos_start, 2, "//");
+                line.replace(pos_end, 2, "");
                 out_file.push_back(line);
             } else {
                 // if closing comment symbol */ not at the end of line and printable
                 // objects behind closing comment symbol, then no conversion
                 flag = true;
-                for (int i = pos_second + 2; i < line.size(); i++){
+                for (int i = pos_end + 2; i < line.size(); i++){
                     if (std::isprint(line[i])) {
                         out_file.push_back(line);
                         flag = false;
@@ -72,8 +72,8 @@ int convert_comments(std::string file_name){
                 // if closing comment symbol */ not at the end of line, but no more
                 // printable objects behind closing comment symbol, then convert
                 if (flag){
-                    line.replace(pos_first, 2, "//");
-                    line.replace(pos_second, 2, "");
+                    line.replace(pos_start, 2, "//");
+                    line.replace(pos_end, 2, "");
                     flag = false;
                     out_file.push_back(line);
                 }
@@ -85,17 +85,17 @@ int convert_comments(std::string file_name){
             buffer.push_back(line);
             // if only starting c-style comment symbol /*, append line to buffer and activate
             // flag marking start of c-style comment
-            if (!flag && pos_first != -1){
+            if (!flag && pos_start != -1){
                 flag = true;
             }
             // adding next comment line to buffer
-            else if (flag && pos_second == -1){
+            else if (flag && pos_end == -1){
                 continue;
             }
             // checking closing line with */
             else {
-                if (pos_second + 1 == line.size() - 1){
-                    for (int i = pos_second + 2; i < line.size(); i++){
+                if (pos_end + 1 == line.size() - 1){
+                    for (int i = pos_end + 2; i < line.size(); i++){
                         if (std::isprint(line[i])) {
                             for (int j = 0; j < buffer.size(); j++){
                                 out_file.push_back(buffer[j]);
@@ -109,10 +109,10 @@ int convert_comments(std::string file_name){
                 if (flag){
                     for (int j = 0; j < buffer.size(); j++){
                         if (j == 0){
-                            pos_first = buffer[j].find("/*");
-                            buffer[j].replace(pos_first, 2, "//");
+                            pos_start = buffer[j].find("/*");
+                            buffer[j].replace(pos_start, 2, "//");
                         } else if (j == buffer.size() - 1){
-                            buffer[j].replace(pos_second, 2, "");
+                            buffer[j].replace(pos_end, 2, "");
                             buffer[j].insert(0, "// ");
                         } else {
                             buffer[j].insert(0, "// ");
