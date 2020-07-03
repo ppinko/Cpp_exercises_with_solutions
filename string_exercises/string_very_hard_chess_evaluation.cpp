@@ -2,7 +2,6 @@
 
 #include <string>
 #include <iostream>
-#include <vector>
 #include <iomanip>
 #include <cmath>
 
@@ -27,6 +26,14 @@ bool canMove(std::string piece, std::string current, std::string target) {
         if (current.at(0) == target.at(0) || current.at(1) == target.at(1))
             return true;
     }
+    else if (piece == "Queen"){
+        if (a == b || current.at(0) == target.at(0) || current.at(1) == target.at(1))
+            return true;
+    }
+    else if (piece == "King"){
+        if (a <= 1 && b <= 1)
+            return true;
+    }    
     return false;
 }
 
@@ -42,6 +49,9 @@ int main(){
 	std::cout << canMove("Bishop", "B6", "F5") << std::endl;
     std::cout << canMove("Rook", "A8", "H8") << std::endl;
 	std::cout << canMove("Rook", "A8", "H7") << std::endl;
-    
+    std::cout << canMove("Queen", "A8", "H1") << std::endl;
+	std::cout << canMove("Queen", "A6", "H4") << std::endl;
+	std::cout << canMove("King", "C4", "D5") << std::endl;
+	std::cout << canMove("King", "B7", "B5") << std::endl;
     return 0;
 }
