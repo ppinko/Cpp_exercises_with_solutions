@@ -8,7 +8,6 @@
 #include <cctype>
 
 int strongPassword(std::string password) {
-    // std::string special {"!@#$%^&*()-+"};
     int conditions = 0;
     if (std::any_of(password.begin(), password.end(), [](char c){return std::islower(c);}))
         conditions++;
