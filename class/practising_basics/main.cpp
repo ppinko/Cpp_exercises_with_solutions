@@ -7,6 +7,8 @@ int main(){
         Dog ziuta {"Ziuta", 5};
         ziuta.get_age();
         ziuta.introduce();
+        std::cout << ziuta.after_n_year() << std::endl;
+        std::cout << ziuta.after_n_year(10) << std::endl;
 
         Dog homeless;
         homeless.get_age();

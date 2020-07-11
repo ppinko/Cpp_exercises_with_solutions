@@ -26,7 +26,8 @@ class Dog {
 
         // methods
         void get_age();
-        void introduce();  
+        void introduce(); 
+        int after_n_year(int n = 5); 
 };
 
 #endif

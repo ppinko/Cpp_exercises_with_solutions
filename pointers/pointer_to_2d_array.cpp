@@ -8,11 +8,9 @@ a pointer to the allocated array. */
 
 int **twoDarray(const int r, const int c){
     int** arr {nullptr};
-    arr = new int *[r];
-    int i;
-    for (i = 0; i < r; ++i){
+    arr = new int* [r];
+    for (int i = 0; i < r; ++i)
         arr[i] = new int[c];
-    }
     return arr;
 }
 

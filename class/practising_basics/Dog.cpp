@@ -56,3 +56,7 @@ void Dog::get_age(){
 void Dog::introduce(){
     std::cout << "I'm a dog and my name is " << name << std::endl;
 }
+
+int Dog::after_n_year(int n){
+    return this->age + n;
+}
