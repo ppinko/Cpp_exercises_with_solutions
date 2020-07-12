@@ -25,7 +25,6 @@ int minPalindromeSteps(const std::string str)
     for (int i = 0; i < str.size() - 1; ++i)
     {
         std::string temp = str.substr(i);
-        std::cout << temp << std::endl;
         if (isPalindrom(temp))
             return i;
     }
