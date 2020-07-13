@@ -41,7 +41,7 @@ long largestRectangle(std::vector<int> h) {
         {
             max_rect = temp * n;
         }
-        std::cout << "I = " << i << ", rect = " << max_rect << std::endl;
+        // std::cout << "I = " << i << ", rect = " << max_rect << std::endl;
     }
     return max_rect;
 }
