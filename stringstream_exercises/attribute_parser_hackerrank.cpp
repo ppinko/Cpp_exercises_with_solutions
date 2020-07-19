@@ -35,9 +35,18 @@ int main() {
     for (int i = 0; i <= row; ++i)
     {   
         std::getline(std::cin, temp);
-        if (temp.find("<tag") != std::string::npos)
+        if (temp.find("</") != std::string::npos)
         {
-            int start_tag_pos = temp.find("<tag");
+            if (opening_tag.rfind(".") == std::string::npos)
+                opening_tag.clear();
+            else {
+                int last_tag_pos = opening_tag.rfind(".");
+                opening_tag = opening_tag.substr(0, last_tag_pos);
+            }
+        }
+        else if (temp.find("<") != std::string::npos)
+        {
+            int start_tag_pos = temp.find("<");
             int end_tag_pos = temp.find(" ", start_tag_pos);
             tag_name = temp.substr(start_tag_pos +1, end_tag_pos - start_tag_pos - 1);
             int tag_attr_end = temp.find(" ", end_tag_pos + 1);
@@ -55,16 +64,14 @@ int main() {
             tag_val = temp.substr(tag_val_start, tag_val_end-tag_val_start+1);
             m[tag_key] = tag_val;
         }
-        if (temp.find("</tag") != std::string::npos)
-        {
-            if (opening_tag.rfind(".") == std::string::npos)
-                opening_tag.clear();
-            else {
-                int last_tag_pos = opening_tag.rfind(".");
-                opening_tag = opening_tag.substr(0, last_tag_pos);
-            }
-        }
     }
+
+    auto it_all = m.begin();
+    while (it_all != m.end()){
+        std::cout << it_all->first << " = " << it_all->second << std::endl;
+        ++it_all;
+    }
+
 
     for (int i = 0; i < queries; ++i){
         std::string q_key;
@@ -76,6 +83,7 @@ int main() {
             std::cout << "Not Found!" << std::endl;
         }
     }
+
 
 
     return 0;
