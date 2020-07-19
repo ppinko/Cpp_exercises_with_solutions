@@ -49,13 +49,26 @@ int main() {
         {   
             int start_position = 0;
             int num_args = std::count(temp.begin(), temp.end(), '=');
-            for (int j = 0; j < num_args; ++j){
+            if (num_args == 0)
+                ++num_args;
+            for (int j = 0; j < num_args; ++j)
+            {
                 int start_tag_pos, end_tag_pos;
                 if (j == 0){
                     start_tag_pos = temp.find("<");
-                    end_tag_pos = temp.find(" ", start_tag_pos);
-                    tag_name = temp.substr(start_tag_pos +1, end_tag_pos - start_tag_pos - 1);
-                    start_position = end_tag_pos;
+                    if (temp.find(" ", start_tag_pos) != std::string::npos)
+                    {   
+                        end_tag_pos = temp.find(" ", start_tag_pos);
+                        tag_name = temp.substr(start_tag_pos +1, end_tag_pos - start_tag_pos - 1);
+                        start_position = end_tag_pos;
+                    }
+                    else 
+                    {
+                        end_tag_pos = temp.find(">", start_tag_pos);
+                        tag_name = temp.substr(start_tag_pos +1, end_tag_pos - start_tag_pos - 1);
+                        start_position = end_tag_pos;
+                        break;
+                    }
                 }
                 int tag_attr_end = temp.find(" ", start_position + 1);
                 tag_attr = temp.substr(start_position+1, tag_attr_end-start_position-1);
