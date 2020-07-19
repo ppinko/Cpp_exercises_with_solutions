@@ -42,16 +42,13 @@ std::string isbn13(std::string str) {
     else {
         for (int i = 0; i < str.size(); ++i){
             int temp = (int)str[i] - (int)'0';
-            // std::cout << "Temp = " << temp << std::endl;
             if (i % 2 == 0){
                 letters_count += temp;
             }
             else {
                 letters_count += 3 * temp;
             }
-            // std::cout << "Partial sum = " << letters_count << std::endl;
         }
-        // std::cout << "Letter count = " << letters_count << std::endl;
         if (letters_count % 10 == 0)
             return "Valid";
         else {
@@ -62,7 +59,6 @@ std::string isbn13(std::string str) {
 
 int main(){
 
-    std::cout << isbn13("031606652X") << std::endl;
     assert((isbn13("9780316066525") == "Valid"));
 	assert((isbn13("9783866155237") == "Valid"));
 	assert((isbn13("9780345453747") == "Valid"));
