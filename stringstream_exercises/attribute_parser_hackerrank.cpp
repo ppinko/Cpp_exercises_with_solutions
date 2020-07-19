@@ -9,28 +9,19 @@
 
 #include <cmath>
 #include <cstdio>
-#include <vector>
 #include <iostream>
 #include <algorithm>
-#include <sstream>
 #include <string>
 #include <map>
 #include <algorithm>
-using namespace std;
 
 
 int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
     int row, queries;
     std::cin >> row >> queries;
-    std::string nested_tag = "";
-    std::string temp;
-    std::string tag_name;
-    std::string tag_attr;
-    std::string tag_val;
+    std::string temp, tag_name, tag_attr, tag_val, tag_key;
     std::string opening_tag {};
-    std::string tag_key;
-
     std::map<std::string, std::string> m {};
 
     for (int i = 0; i <= row; ++i)
@@ -93,13 +84,6 @@ int main() {
         }
     }
 
-    // auto it_all = m.begin();
-    // while (it_all != m.end()){
-    //     std::cout << it_all->first << " = " << it_all->second << std::endl;
-    //     ++it_all;
-    // }
-
-
     for (int i = 0; i < queries; ++i){
         std::string q_key;
         std::cin >> q_key;
@@ -110,8 +94,6 @@ int main() {
             std::cout << "Not Found!" << std::endl;
         }
     }
-
-
 
     return 0;
 }
