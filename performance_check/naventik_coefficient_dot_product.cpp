@@ -7,9 +7,11 @@ length K create an array of dot products for every length K in C.
 #include <chrono>
 #include <random>
 #include <vector>
+#include <deque>
 
 std::vector<double> raw_dot_product(std::vector<int> &A, std::vector<double> &C);
-std::vector<double> memo_dot_product(std::vector<int> &A, std::vector<double> &C);
+std::vector<double> raw_dot_product_with_indexing(std::vector<int> &A, std::vector<double> &C);
+
 
 std::vector<double> raw_dot_product(std::vector<int> &A, std::vector<double> &C){
     int N = A.size();
@@ -23,6 +25,22 @@ std::vector<double> raw_dot_product(std::vector<int> &A, std::vector<double> &C)
             temp += A[i+j] * C[j];
         }
         result.push_back(temp);        
+    }
+    return result;    
+}
+
+std::vector<double> raw_dot_product_with_indexing(std::vector<int> &A, std::vector<double> &C){
+    int N = A.size();
+    int K = C.size();
+    std::vector<double> result (N-K+1, 0);
+    for (int i = 0; i < N - K + 1; ++i)
+    {   
+        double temp = 0;
+        for (int j = 0; j < K; ++j)
+        {
+            temp += A[i+j] * C[j];
+        }
+        result[i] = temp;        
     }
     return result;    
 }
@@ -45,13 +63,25 @@ int main(){
         Arr[i] = arr_distribution(crypto_random_generator);
     }
 
-    auto raw_dot_product_start = std::chrono::high_resolution_clock::now();
-    raw_dot_product(Arr, Coeff);
-    auto raw_dot_product_end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsed = raw_dot_product_end - raw_dot_product_start;
-    std::cout << "Time needed for raw dot product algorithm = " << elapsed.count() 
-        << "s.\n";
-    // Result t = 6.2749s
+    {
+        auto raw_dot_product_start = std::chrono::high_resolution_clock::now();
+        raw_dot_product(Arr, Coeff);
+        auto raw_dot_product_end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsed = raw_dot_product_end - raw_dot_product_start;
+        std::cout << "Time needed for raw dot product algorithm = " << elapsed.count() 
+            << "s.\n";
+        // Result t = 6.30s
+    }
+
+    {
+        auto raw_dot_product_start = std::chrono::high_resolution_clock::now();
+        raw_dot_product_with_indexing(Arr, Coeff);
+        auto raw_dot_product_end = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> elapsed = raw_dot_product_end - raw_dot_product_start;
+        std::cout << "Time needed for raw dot product with indexing algorithm = " << elapsed.count() 
+            << "s.\n";
+        // Result t = 6.23s
+    }
 
     return 0;
 }
