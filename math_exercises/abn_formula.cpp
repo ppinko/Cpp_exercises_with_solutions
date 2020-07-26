@@ -8,7 +8,7 @@
 #include <algorithm>
 
 std::vector<int> binomialCoeff(int n);
-std::string Formula(int n);
+std::string formula(int n);
 
 // Returns value of Binomial Coefficient C(n, k) 
 std::vector<int> binomialCoeff(int n) 
@@ -37,7 +37,7 @@ std::vector<int> binomialCoeff(int n)
     return v[n]; 
 } 
 
-std::string Formula(int n) {
+std::string formula(int n) {
     int n_pos = std::abs(n);
     std::vector<int> binomial_coefficients = binomialCoeff(n_pos);
     std::string ans {};
@@ -90,7 +90,7 @@ int main(){
     // auto vec = binomialCoeff(4);
     // std::copy(vec.begin(), vec.end(), std::ostream_iterator<int>(std::cout, " "));
 
-    std::string test_1 = Formula(-2);
+    std::string test_1 = formula(-2);
     std::cout << test_1 << std::endl;
 
     return 0;
