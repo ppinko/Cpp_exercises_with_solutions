@@ -7,12 +7,13 @@
 #include <string>
 #include <cctype>
 #include <algorithm>
+#include <set>
 
 bool evaluate_brackets(const std::string &str);
 void adding_multiply_sign(std::string &str);
 void multiply_sign_in_front_of_x(std::string &str);
 int evalPolynomial(std::string poly, int num); 
-
+bool testing_operator_correctness(const std::string &str);
 
 bool evaluate_brackets(const std::string &str)
 {
@@ -30,6 +31,33 @@ bool evaluate_brackets(const std::string &str)
     }
     if (count_brackets != 0)
         return false;
+    return true;
+}
+
+bool testing_operator_correctness(const std::string &str){
+    std::set<char> operators {'+', '-', '/', '*', '^'};
+    bool oper = false;
+    if (!std::isdigit(str.at(0)))
+        return false;
+    for (int j = 1; j < str.size(); ++j)
+    {   
+        auto it = operators.find(str.at(j));
+        if (std::isdigit(str.at(j)) || str.at(j) == ')')
+            oper = false;
+        else if (oper)
+        {
+            if (!std::isdigit(str.at(j)) && str.at(j) != '(')
+                return false;
+            else if (str.at(j) == '(')
+                continue;
+            else 
+                oper = false;
+        }
+        else if (it != operators.end())
+            oper = true;
+        else
+            return false;
+    }
     return true;
 }
 
@@ -94,6 +122,16 @@ int main()
     std::string str_2 {"3x^2/8"};
     multiply_sign_in_front_of_x(str_2);
     assert((str_2 == "3*x^2/8"));
+
+    // Testing multiply_sign_in_front_of_x function
+    std::string str_3 {"3x&2/8"};
+    assert((testing_operator_correctness(str_3) == false));
+
+    std::string str_4 {"5//2"};
+    assert((testing_operator_correctness(str_4) == false));
+
+    std::string str_5 {"5/2*2*(2+65)"};
+    assert((testing_operator_correctness(str_5) == true));
 
     assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
     // assert((evalPolynomial("x+1", 1) == 2));
