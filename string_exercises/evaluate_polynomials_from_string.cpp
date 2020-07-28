@@ -10,6 +10,7 @@
 
 bool evaluate_brackets(const std::string &str);
 void adding_multiply_sign(std::string &str);
+void multiply_sign_in_front_of_x(std::string &str);
 int evalPolynomial(std::string poly, int num); 
 
 
@@ -53,6 +54,27 @@ void adding_multiply_sign(std::string &str)
     }
 }
 
+void multiply_sign_in_front_of_x(std::string &str)
+{
+    auto it = std::find(str.begin(), str.end(), 'x');
+    while (it != str.end())
+    {
+        if (it == str.begin())
+            ++it;
+        else
+        {
+            --it;
+            if (std::isdigit(*it))
+            {
+                
+                str.insert(it+1, '*');
+                it += 3;
+            }
+        }
+        it = std::find(it, str.end(), 'x');
+    }
+}
+
 int evalPolynomial(std::string poly, int num) {
     poly.erase(std::remove(poly.begin(), poly.end(), ' '), poly.end());
     if (poly.size() == 0 || !evaluate_brackets(poly))
@@ -67,6 +89,11 @@ int main()
     std::string str {"2(x+2)+x(x-1)"};
     adding_multiply_sign(str);
     assert((str == "2*(x+2)+x*(x-1)"));
+
+    // Testing multiply_sign_in_front_of_x function
+    std::string str_2 {"3x^2/8"};
+    multiply_sign_in_front_of_x(str_2);
+    assert((str_2 == "3*x^2/8"));
 
     assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
     // assert((evalPolynomial("x+1", 1) == 2));
