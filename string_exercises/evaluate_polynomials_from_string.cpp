@@ -15,6 +15,7 @@ void multiply_sign_in_front_of_x(std::string &str);
 int evalPolynomial(std::string poly, int num); 
 bool testing_operator_correctness(const std::string &str);
 void replace_x(std::string &str, const int num);
+int calculation(std::string str); // NEXT STEP IMPLEMENT RECURSIVE FORMULA FOR BRACKETS()
 
 bool evaluate_brackets(const std::string &str)
 {
@@ -122,7 +123,10 @@ int evalPolynomial(std::string poly, int num) {
     if (poly.find('(') != std::string::npos)
         adding_multiply_sign(poly);
     if (poly.find('x') != std::string::npos)
+    {
         multiply_sign_in_front_of_x(poly);
+        replace_x(poly, num);
+    }
     return 0;
 
 }
