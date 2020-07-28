@@ -8,10 +8,12 @@
 #include <cctype>
 #include <algorithm>
 
-bool evaluate_brackets(std::string &str);
+bool evaluate_brackets(const std::string &str);
+void adding_multiply_sign(std::string &str);
 int evalPolynomial(std::string poly, int num); 
 
-bool evaluate_brackets(std::string &str)
+
+bool evaluate_brackets(const std::string &str)
 {
     int count_brackets = 0;
     for (const auto &c : str)
@@ -30,6 +32,27 @@ bool evaluate_brackets(std::string &str)
     return true;
 }
 
+void adding_multiply_sign(std::string &str)
+{
+    auto it = std::find(str.begin(), str.end(), '(');
+    while (it != str.end())
+    {
+        if (it == str.begin())
+            ++it;
+        else
+        {
+            --it;
+            if (std::isdigit(*it) || *it == 'x')
+            {
+                
+                str.insert(it+1, '*');
+                it += 3;
+            }
+        }
+        it = std::find(it, str.end(), '(');
+    }
+}
+
 int evalPolynomial(std::string poly, int num) {
     poly.erase(std::remove(poly.begin(), poly.end(), ' '), poly.end());
     if (poly.size() == 0 || !evaluate_brackets(poly))
@@ -40,6 +63,11 @@ int evalPolynomial(std::string poly, int num) {
 
 int main()
 {
+    // Testing adding_multiply_sign function
+    std::string str {"2(x+2)+x(x-1)"};
+    adding_multiply_sign(str);
+    assert((str == "2*(x+2)+x*(x-1)"));
+
     assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
     // assert((evalPolynomial("x+1", 1) == 2));
 	// assert((evalPolynomial("x^2", 2) == 4)); // Check exponentation.
