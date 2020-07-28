@@ -6,6 +6,7 @@
 #include <numeric>
 #include <string>
 #include <cctype>
+#include <algorithm>
 
 bool evaluate_brackets(std::string &str);
 int evalPolynomial(std::string poly, int num); 
@@ -30,9 +31,11 @@ bool evaluate_brackets(std::string &str)
 }
 
 int evalPolynomial(std::string poly, int num) {
-	if (!evaluate_brackets(poly))
+    poly.erase(std::remove(poly.begin(), poly.end(), ' '), poly.end());
+    if (poly.size() == 0 || !evaluate_brackets(poly))
         return -1;
     return 0;
+
 }
 
 int main()
@@ -45,7 +48,7 @@ int main()
 	// assert((evalPolynomial("3x&2/8", 5) == -1)); // & not a valid mathematical expression.
 	// assert((evalPolynomial("print(x)", 6) == -1)); // print(x) not a valid mathematical expression.
 	// assert((evalPolynomial("x//2", 7) == -1)); // // not a valid operator.
-	// assert((evalPolynomial("", 8) == -1)); // Expression empty.
+	assert((evalPolynomial("", 8) == -1)); // Expression empty.
 
     std::cout << "Success" << std::endl;
 

@@ -3,7 +3,6 @@
 #include <cassert>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <numeric>
 
 int josephus(int n, int i) {
