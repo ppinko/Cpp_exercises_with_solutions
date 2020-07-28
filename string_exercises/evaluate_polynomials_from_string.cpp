@@ -14,6 +14,7 @@ void adding_multiply_sign(std::string &str);
 void multiply_sign_in_front_of_x(std::string &str);
 int evalPolynomial(std::string poly, int num); 
 bool testing_operator_correctness(const std::string &str);
+void replace_x(std::string &str, const int num);
 
 bool evaluate_brackets(const std::string &str)
 {
@@ -103,10 +104,25 @@ void multiply_sign_in_front_of_x(std::string &str)
     }
 }
 
+void replace_x(std::string &str, const int num)
+{
+    std::string num_str = std::to_string(num);
+    int num_x = std::count(str.begin(), str.end(), 'x');
+    for (int i = 0; i < num_x; ++i)
+    {
+        int index = str.find('x');
+        str.replace(index, 1, num_str);
+    }
+}
+
 int evalPolynomial(std::string poly, int num) {
     poly.erase(std::remove(poly.begin(), poly.end(), ' '), poly.end());
     if (poly.size() == 0 || !evaluate_brackets(poly))
         return -1;
+    if (poly.find('(') != std::string::npos)
+        adding_multiply_sign(poly);
+    if (poly.find('x') != std::string::npos)
+        multiply_sign_in_front_of_x(poly);
     return 0;
 
 }
@@ -132,6 +148,11 @@ int main()
 
     std::string str_5 {"5/2*2*(2+65)"};
     assert((testing_operator_correctness(str_5) == true));
+
+    // Testing replace_x function
+    std::string str_6 {"2(x+2)+x(x-1)"};
+    replace_x(str_6, 10);
+    assert((str_6 == "2(10+2)+10(10-1)"));
 
     assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
     // assert((evalPolynomial("x+1", 1) == 2));
