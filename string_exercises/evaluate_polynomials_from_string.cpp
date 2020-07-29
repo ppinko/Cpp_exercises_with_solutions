@@ -8,6 +8,7 @@
 #include <cctype>
 #include <algorithm>
 #include <set>
+#include <iterator>
 
 bool evaluate_brackets(const std::string &str);
 bool adding_multiply_sign(std::string &str);
@@ -15,7 +16,29 @@ void multiply_sign_in_front_of_x(std::string &str);
 int evalPolynomial(std::string poly, int num); 
 bool testing_operator_correctness(const std::string &str);
 void replace_x(std::string &str, const int num);
-int calculation(std::string str); // NEXT STEP IMPLEMENT RECURSIVE FORMULA FOR BRACKETS()
+int calculation(std::string &str); // NEXT STEP IMPLEMENT RECURSIVE FORMULA FOR BRACKETS()
+void split_operations(const std::string &str, std::vector<char> &symbols, std::vector<int> &nums);
+
+void split_operations(const std::string &str, std::vector<char> &symbols, std::vector<int> &nums)
+{
+    std::string temp_num {};
+    for (const char &c : str)
+    {
+        if (std::isdigit(c))
+            temp_num.push_back(c);
+        else
+        {
+            symbols.push_back(c);
+            if (temp_num.size() > 0)
+            {
+                nums.push_back(std::stoi(temp_num));
+                temp_num.clear();
+            }
+        }
+    }
+    if (temp_num.size() > 0)
+        nums.push_back(std::stoi(temp_num));
+}
 
 bool evaluate_brackets(const std::string &str)
 {
@@ -119,6 +142,22 @@ void replace_x(std::string &str, const int num)
     }
 }
 
+int calculation(std::string &str)
+{
+    while (str.rfind('(') != std::string::npos)
+        {
+            int start_parenthesis = str.rfind('(');
+            int end_parenthesis = str.find(')', start_parenthesis);
+            std::string temp = str.substr(start_parenthesis+1, end_parenthesis - start_parenthesis - 1);
+            int rec_temp = calculation(temp);
+            temp.clear();
+            temp = std::to_string(rec_temp);
+            str.replace(start_parenthesis, end_parenthesis - start_parenthesis + 1, temp);
+        }
+    
+    return 10;    
+}
+
 int evalPolynomial(std::string poly, int num) {
     poly.erase(std::remove(poly.begin(), poly.end(), ' '), poly.end());
     if (poly.size() == 0 || !evaluate_brackets(poly))
@@ -166,6 +205,19 @@ int main()
     // replace_x(str_6, 10);
     // assert((str_6 == "2(10+2)+10(10-1)"));
 
+    // Testing split operations function
+
+    std::string test_split_str = "15*205-10";
+    std::vector<char> test_split_symbols {};
+    std::vector<int> test_split_nums {};
+    split_operations(test_split_str, test_split_symbols, test_split_nums);
+    std::copy(test_split_symbols.begin(), test_split_symbols.end(),
+        std::ostream_iterator<char>(std::cout, " "));
+    std::cout << std::endl;
+    std::copy(test_split_nums.begin(), test_split_nums.end(),
+        std::ostream_iterator<int>(std::cout, " "));
+    std::cout << std::endl;
+
     assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
     // assert((evalPolynomial("x+1", 1) == 2));
 	// assert((evalPolynomial("x^2", 2) == 4)); // Check exponentation.
@@ -175,6 +227,10 @@ int main()
     assert((evalPolynomial("print(x)", 6) == -1)); // print(x) not a valid mathematical expression.
 	assert((evalPolynomial("x//2", 7) == -1)); // // not a valid operator.
 	assert((evalPolynomial("", 8) == -1)); // Expression empty.
+
+    std::string test {"pawel"};
+    if (test.rfind('o') == std::string::npos) 
+        std::cout << "Test successfull" << std::endl;
 
     std::cout << "Success" << std::endl;
 
