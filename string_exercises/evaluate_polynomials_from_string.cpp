@@ -17,7 +17,7 @@ void multiply_sign_in_front_of_x(std::string &str);
 int evalPolynomial(std::string poly, int num); 
 bool testing_operator_correctness(const std::string &str);
 void replace_x(std::string &str, const int num);
-int calculation(std::string &str); // NEXT STEP IMPLEMENT RECURSIVE FORMULA FOR BRACKETS()
+int calculation(std::string &str); 
 void split_operations(const std::string &str, std::vector<char> &symbols, std::vector<int> &nums);
 
 void split_operations(const std::string &str, std::vector<char> &symbols, std::vector<int> &nums)
@@ -127,6 +127,10 @@ void multiply_sign_in_front_of_x(std::string &str)
                 str.insert(it+1, '*');
                 it += 3;
             }
+            else
+            {
+                it += 2;
+            }
         }
         it = std::find(it, str.end(), 'x');
     }
@@ -167,6 +171,7 @@ int calculation(std::string &str)
         operators.erase(power);
         operands.at(index_power+1) = temp_result;
         operands.erase(operands.begin() + index_power);
+        power = std::find(operators.begin(), operators.end(), '^');
     }
     if (operators.size() == 0)
         return operands.at(0);
@@ -179,6 +184,7 @@ int calculation(std::string &str)
         operators.erase(multiplication);
         operands.at(index_multiplication+1) = temp_result;
         operands.erase(operands.begin() + index_multiplication);
+        multiplication = std::find(operators.begin(), operators.end(), '*');
     }    
 
     if (operators.size() == 0)
@@ -192,6 +198,7 @@ int calculation(std::string &str)
         operators.erase(division);
         operands.at(index_division+1) = temp_result;
         operands.erase(operands.begin() + index_division);
+        division = std::find(operators.begin(), operators.end(), '/');
     }    
 
     if (operators.size() == 0)
@@ -205,6 +212,7 @@ int calculation(std::string &str)
         operators.erase(addition);
         operands.at(index_addition+1) = temp_result;
         operands.erase(operands.begin() + index_addition);
+        addition = std::find(operators.begin(), operators.end(), '+');
     }   
 
     if (operators.size() == 0)
@@ -218,6 +226,7 @@ int calculation(std::string &str)
         operators.erase(substraction);
         operands.at(index_substraction+1) = temp_result;
         operands.erase(operands.begin() + index_substraction);
+        substraction = std::find(operators.begin(), operators.end(), '-');
     }   
 
     return operands.at(0);    
@@ -233,14 +242,13 @@ int evalPolynomial(std::string poly, int num) {
             return -1;
     }
     if (poly.find('x') != std::string::npos)
-    {
+    {   
         multiply_sign_in_front_of_x(poly);
         replace_x(poly, num);
     }
     if (!testing_operator_correctness(poly))
         return -1;
-    return 0;
-
+    return calculation(poly);
 }
 
 int main()
@@ -283,22 +291,23 @@ int main()
     //     std::ostream_iterator<int>(std::cout, " "));
     // std::cout << std::endl;
 
-    // Testing calculation function
-    std::string calc_1 {"2+2*2"};
-    assert((calculation(calc_1) == 6));
+    // // Testing calculation function
+    // std::string calc_1 {"2+2*2"};
+    // assert((calculation(calc_1) == 6));
 
-    std::string calc_2 {"(2+2)*2"};
-    assert((calculation(calc_2) == 8));
+    // std::string calc_2 {"(2+2)*2"};
+    // assert((calculation(calc_2) == 8));
+    // std::cout << evalPolynomial("3x^2/8", 4) << std::endl;
 
-    // assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
-    // // assert((evalPolynomial("x+1", 1) == 2));
-	// // assert((evalPolynomial("x^2", 2) == 4)); // Check exponentation.
-	// // assert((evalPolynomial("2(x+2)+x(x-1)", 3) == 16)); // Check multiplication.
-	// // assert((evalPolynomial("3x^2/8", 4) == 6));
-    // assert((evalPolynomial("3x&2/8", 5) == -1)); // & not a valid mathematical expression.
-    // assert((evalPolynomial("print(x)", 6) == -1)); // print(x) not a valid mathematical expression.
-	// assert((evalPolynomial("x//2", 7) == -1)); // // not a valid operator.
-	// assert((evalPolynomial("", 8) == -1)); // Expression empty.
+    assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
+    assert((evalPolynomial("x+1", 1) == 2));
+	assert((evalPolynomial("x^2", 2) == 4)); // Check exponentation.
+	assert((evalPolynomial("2(x+2)+x(x-1)", 3) == 16)); // Check multiplication.
+	assert((evalPolynomial("3x^2/8", 4) == 6));
+    assert((evalPolynomial("3x&2/8", 5) == -1)); // & not a valid mathematical expression.
+    assert((evalPolynomial("print(x)", 6) == -1)); // print(x) not a valid mathematical expression.
+	assert((evalPolynomial("x//2", 7) == -1)); // // not a valid operator.
+	assert((evalPolynomial("", 8) == -1)); // Expression empty.
 
     // std::string test {"pawel"};
     // if (test.rfind('o') == std::string::npos) 
