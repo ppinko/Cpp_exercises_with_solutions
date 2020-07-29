@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <set>
 #include <iterator>
+#include <cmath>
 
 bool evaluate_brackets(const std::string &str);
 bool adding_multiply_sign(std::string &str);
@@ -154,8 +155,72 @@ int calculation(std::string &str)
             temp = std::to_string(rec_temp);
             str.replace(start_parenthesis, end_parenthesis - start_parenthesis + 1, temp);
         }
-    
-    return 10;    
+    std::vector<char> operators {};
+    std::vector<int> operands {};
+    split_operations(str, operators, operands);
+    int result = 0;
+    auto power = std::find(operators.begin(), operators.end(), '^');
+    while (power != operators.end())
+    {
+        int index_power = power - operators.begin();
+        int temp_result = std::pow(operands.at(index_power), operands.at(index_power + 1));
+        operators.erase(power);
+        operands.at(index_power+1) = temp_result;
+        operands.erase(operands.begin() + index_power);
+    }
+    if (operators.size() == 0)
+        return operands.at(0);
+
+    auto multiplication = std::find(operators.begin(), operators.end(), '*');
+    while (multiplication != operators.end())
+    {
+        int index_multiplication = multiplication - operators.begin();
+        int temp_result = operands.at(index_multiplication) * operands.at(index_multiplication + 1);
+        operators.erase(multiplication);
+        operands.at(index_multiplication+1) = temp_result;
+        operands.erase(operands.begin() + index_multiplication);
+    }    
+
+    if (operators.size() == 0)
+        return operands.at(0);
+
+    auto division = std::find(operators.begin(), operators.end(), '/');
+    while (division != operators.end())
+    {
+        int index_division = division - operators.begin();
+        int temp_result = operands.at(index_division) / operands.at(index_division + 1);
+        operators.erase(division);
+        operands.at(index_division+1) = temp_result;
+        operands.erase(operands.begin() + index_division);
+    }    
+
+    if (operators.size() == 0)
+        return operands.at(0);
+
+    auto addition = std::find(operators.begin(), operators.end(), '+');
+    while (addition != operators.end())
+    {
+        int index_addition = addition - operators.begin();
+        int temp_result = operands.at(index_addition) + operands.at(index_addition + 1);
+        operators.erase(addition);
+        operands.at(index_addition+1) = temp_result;
+        operands.erase(operands.begin() + index_addition);
+    }   
+
+    if (operators.size() == 0)
+        return operands.at(0);
+
+    auto substraction = std::find(operators.begin(), operators.end(), '-');
+    while (substraction != operators.end())
+    {
+        int index_substraction = substraction - operators.begin();
+        int temp_result = operands.at(index_substraction) - operands.at(index_substraction + 1);
+        operators.erase(substraction);
+        operands.at(index_substraction+1) = temp_result;
+        operands.erase(operands.begin() + index_substraction);
+    }   
+
+    return operands.at(0);    
 }
 
 int evalPolynomial(std::string poly, int num) {
@@ -207,30 +272,37 @@ int main()
 
     // Testing split operations function
 
-    std::string test_split_str = "15*205-10";
-    std::vector<char> test_split_symbols {};
-    std::vector<int> test_split_nums {};
-    split_operations(test_split_str, test_split_symbols, test_split_nums);
-    std::copy(test_split_symbols.begin(), test_split_symbols.end(),
-        std::ostream_iterator<char>(std::cout, " "));
-    std::cout << std::endl;
-    std::copy(test_split_nums.begin(), test_split_nums.end(),
-        std::ostream_iterator<int>(std::cout, " "));
-    std::cout << std::endl;
+    // std::string test_split_str = "15*205-10";
+    // std::vector<char> test_split_symbols {};
+    // std::vector<int> test_split_nums {};
+    // split_operations(test_split_str, test_split_symbols, test_split_nums);
+    // std::copy(test_split_symbols.begin(), test_split_symbols.end(),
+    //     std::ostream_iterator<char>(std::cout, " "));
+    // std::cout << std::endl;
+    // std::copy(test_split_nums.begin(), test_split_nums.end(),
+    //     std::ostream_iterator<int>(std::cout, " "));
+    // std::cout << std::endl;
 
-    assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
-    // assert((evalPolynomial("x+1", 1) == 2));
-	// assert((evalPolynomial("x^2", 2) == 4)); // Check exponentation.
-	// assert((evalPolynomial("2(x+2)+x(x-1)", 3) == 16)); // Check multiplication.
-	// assert((evalPolynomial("3x^2/8", 4) == 6));
-    assert((evalPolynomial("3x&2/8", 5) == -1)); // & not a valid mathematical expression.
-    assert((evalPolynomial("print(x)", 6) == -1)); // print(x) not a valid mathematical expression.
-	assert((evalPolynomial("x//2", 7) == -1)); // // not a valid operator.
-	assert((evalPolynomial("", 8) == -1)); // Expression empty.
+    // Testing calculation function
+    std::string calc_1 {"2+2*2"};
+    assert((calculation(calc_1) == 6));
 
-    std::string test {"pawel"};
-    if (test.rfind('o') == std::string::npos) 
-        std::cout << "Test successfull" << std::endl;
+    std::string calc_2 {"(2+2)*2"};
+    assert((calculation(calc_2) == 8));
+
+    // assert((evalPolynomial("4(x + 3))/2", 5) == -1)); // Invalid because parentheses not balanced.
+    // // assert((evalPolynomial("x+1", 1) == 2));
+	// // assert((evalPolynomial("x^2", 2) == 4)); // Check exponentation.
+	// // assert((evalPolynomial("2(x+2)+x(x-1)", 3) == 16)); // Check multiplication.
+	// // assert((evalPolynomial("3x^2/8", 4) == 6));
+    // assert((evalPolynomial("3x&2/8", 5) == -1)); // & not a valid mathematical expression.
+    // assert((evalPolynomial("print(x)", 6) == -1)); // print(x) not a valid mathematical expression.
+	// assert((evalPolynomial("x//2", 7) == -1)); // // not a valid operator.
+	// assert((evalPolynomial("", 8) == -1)); // Expression empty.
+
+    // std::string test {"pawel"};
+    // if (test.rfind('o') == std::string::npos) 
+    //     std::cout << "Test successfull" << std::endl;
 
     std::cout << "Success" << std::endl;
 
