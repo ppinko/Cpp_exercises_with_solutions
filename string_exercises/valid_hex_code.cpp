@@ -13,9 +13,7 @@ bool isValidHexCode(std::string str) {
     {
         if (std::isdigit(str.at(i)))
             continue;
-        else if (std::islower(str.at(i)) && str.at(i) >= 'a' && str.at(i) <= 'f')
-            continue;
-        else if (std::isupper(str.at(i)) && str.at(i) >= 'A' && str.at(i) <= 'F')
+        else if (std::isalpha(str.at(i)) && std::tolower(str.at(i)) >= 'a' && std::tolower(str.at(i)) <= 'f')
             continue;
         else
             return false;
