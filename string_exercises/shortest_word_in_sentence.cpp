@@ -1,14 +1,15 @@
 // https://edabit.com/challenge/WSmaJEJqxzXkqyzMj
 
 #include <cassert>
+#include <iostream>
+
 #include <vector>
-#include <string>
 #include <sstream>
 #include <climits>
-#include <iostream>
 #include <algorithm>
 #include <iterator>
 #include <cctype>
+#include <string>
 
 void word_lower(std::string &s)
 {
