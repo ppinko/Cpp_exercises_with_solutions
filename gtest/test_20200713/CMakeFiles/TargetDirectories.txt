@@ -1,0 +1,3 @@
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_20200713/CMakeFiles/rebuild_cache.dir
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_20200713/CMakeFiles/edit_cache.dir
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_20200713/CMakeFiles/runTests.dir

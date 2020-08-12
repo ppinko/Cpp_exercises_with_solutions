@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_20200713/tests.cpp
+whattotest.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_20200713/whattotest.cpp
+gtest/gtest.h
+-
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_20200713/whattotest.cpp
+math.h
+-
+

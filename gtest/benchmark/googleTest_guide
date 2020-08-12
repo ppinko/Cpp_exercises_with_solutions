@@ -130,7 +130,6 @@ int Square(int x){
 
 5. Running a gtest - the same as any other cpp executable eg. ./build/test/ExampleTests
 
-
 #include "fdiv.hpp"
 
 #include <iostream>
