@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/test_square_triangle.cpp" "/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/CMakeFiles/runTests.dir/test_square_triangle.cpp.o"
+  "/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/test_square_triangle.cpp" "/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/CMakeFiles/runTests.dir/test_square_triangle.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/double_palindrome/double_palindrome.cpp
+iostream
+-
+cassert
+-
+algorithm
+-
+string
+-
+vector
+-
+iterator
+-
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/double_palindrome/test_double_palindrome.cpp
+double_palindrome.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/double_palindrome/double_palindrome.cpp
+gtest/gtest.h
+-
+

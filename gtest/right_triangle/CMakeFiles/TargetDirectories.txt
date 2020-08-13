@@ -1,3 +1,3 @@
-/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/CMakeFiles/rebuild_cache.dir
-/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/CMakeFiles/edit_cache.dir
-/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/CMakeFiles/runTests.dir
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/CMakeFiles/rebuild_cache.dir
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/CMakeFiles/edit_cache.dir
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/CMakeFiles/runTests.dir

@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/square_triangle.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/square_triangle.cpp
 vector
 -
 algorithm
@@ -14,9 +14,9 @@ algorithm
 cmath
 -
 
-/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/test_square_triangle.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/test_square_triangle.cpp
 square_triangle.cpp
-/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/square_triangle.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/square_triangle.cpp
 gtest/gtest.h
 -
 

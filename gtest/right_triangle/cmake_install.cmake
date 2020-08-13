@@ -1,4 +1,4 @@
-# Install script for directory: /home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle
+# Install script for directory: /home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/square_triangle/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/right_triangle/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

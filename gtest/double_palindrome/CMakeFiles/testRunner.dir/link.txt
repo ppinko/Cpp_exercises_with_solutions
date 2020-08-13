@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/testRunner.dir/test_double_palindrome.cpp.o  -o testRunner  -Wl,-Bstatic -lgtest -Wl,-Bdynamic -lpthread 
