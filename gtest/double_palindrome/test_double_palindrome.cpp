@@ -1,6 +1,15 @@
 #include "double_palindrome.cpp"
 #include <gtest/gtest.h>
 
+// using global variables
+std::vector<std::string> v1 {"7ab", "5fc", "6cd"};
+std::vector<int> a1 {1, 1, 1};
+
+TEST(DoublePalindromeSpecialCases, GlobalVariables)
+{
+    EXPECT_EQ(palindromeSet(v1), a1);
+}
+
 TEST(DoublePalindromeBase, ShortWords)
 {
 	ASSERT_EQ(palindromeSet({"7a", "5f", "6c"}), std::vector<int>({2, 2, 2}));
