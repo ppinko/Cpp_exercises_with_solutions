@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/new_numbers/new_numbers.cpp
+string
+-
+algorithm
+-
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/new_numbers/tests.cpp
+new_numbers.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/new_numbers/new_numbers.cpp
+gtest/gtest.h
+-
+
