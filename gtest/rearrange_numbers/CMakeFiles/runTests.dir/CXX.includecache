@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/rearrange_numbers/rearrange_numbers.cpp
+iostream
+-
+algorithm
+-
+iostream
+-
+string
+-
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/rearrange_numbers/tests.cpp
+rearrange_numbers.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/rearrange_numbers/rearrange_numbers.cpp
+gtest/gtest.h
+-
+
