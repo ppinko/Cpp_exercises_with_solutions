@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/multiplicity_numbers/multiplicity_numbers.cpp
+vector
+-
+set
+-
+algorithm
+-
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/multiplicity_numbers/tests.cpp
+multiplicity_numbers.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/multiplicity_numbers/multiplicity_numbers.cpp
+gtest/gtest.h
+-
+
