@@ -8,13 +8,13 @@ using namespace std;
 class Runner {
     private:
         string name;
-        long distance;
-        long time;
+        long distance;  // [m]
+        long time;      // [min]
     public:
         Runner(string _name, long _distance, long _time);
         ~Runner() = default;
 
-        double get_tempo();
+        double get_tempo(); // [min/km]
 
         string getName() const;
         long getDistance() const;
