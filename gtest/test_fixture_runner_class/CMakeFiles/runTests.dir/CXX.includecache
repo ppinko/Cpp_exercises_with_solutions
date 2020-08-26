@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_fixture_runner_class/Runner.cpp
+Runner.h
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_fixture_runner_class/Runner.h
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_fixture_runner_class/Runner.h
+string
+-
+
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_fixture_runner_class/RunnerTest.cpp
+Runner.h
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_fixture_runner_class/Runner.h
+Runner.cpp
+/home/devpyth/all/c++/Cpp_exercises_with_solutions/gtest/test_fixture_runner_class/Runner.cpp
+gtest/gtest.h
+-
+
