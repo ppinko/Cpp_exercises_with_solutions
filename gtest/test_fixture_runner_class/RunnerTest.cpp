@@ -28,12 +28,12 @@ TEST_F(RunnerTest, NewTempo) {
 }
 
 
-TEST_F(RunnerTest, TestShouldFail) {
-    long value = 7000;
-    double tempo = 10.0;
-    runner1.setNewDistance(value);
-    ASSERT_DOUBLE_EQ(runner1.get_tempo(), tempo) << "This test should fail";
-}
+// TEST_F(RunnerTest, TestShouldFail) {
+//     long value = 7000;
+//     double tempo = 10.0;
+//     runner1.setNewDistance(value);
+//     ASSERT_DOUBLE_EQ(runner1.get_tempo(), tempo) << "This test should fail";
+// }
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
