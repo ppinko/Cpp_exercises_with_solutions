@@ -37,8 +37,7 @@ int nonRepeats(int radix) {
             total += (radix - 1) * number_permutations(radix - 1, i-1);             
         }
     }
-    return total;
-    
+    return total;    
 }
 
 int main(){
