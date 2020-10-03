@@ -23,6 +23,7 @@ int firstIndex(const string &str_hex, const string &needle) {
 int main(int argc, char *argv[]){
 
     cout << firstIndex("68 65 6c 6c 6f 20 77 6f 72 6c 64", "world") << endl;
+    cout << std::stoi("1A", nullptr, 16); 
 
     return 0;
 }
