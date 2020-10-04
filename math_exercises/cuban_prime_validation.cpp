@@ -32,11 +32,6 @@ float roots(const int num){
 }
 
 string cubanPrime(const int num){
-    // p = (x^3 - y^3)/(x - y), x  = y + 1, y > 0
-    // 3y2 + 3y + 1 = p
-    // 3y2 + 3y + 1 - p = 0
-
-    // 9 + 72
     ostringstream oss {};
 	if (!isPrime(num)){
         oss << num << " is not cuban prime";
