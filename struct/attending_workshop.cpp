@@ -40,41 +40,32 @@ int CalculateMaxWorkshops(Available_Workshops* a_workshops){
         timetable.push_back(temp);
     }
     sort(timetable.begin(), timetable.end(), [](pair<int, int> a, pair<int, int> b){
-        if (a.first == b.first)
-            return a.second < b.second;
+        if (a.second == b.second)
+            return a.first > b.first;
         else 
-            return a.first < b.first; 
+            return a.second < b.second; 
         });
 
     // removing elements which have the same starting time but are longer than the shortest one
     vector<pair<int, int> > v {timetable.at(0)};
     for (int i = 1; i < timetable.size(); ++i){
-        if (timetable.at(i).first != v.back().first)
+        if (timetable.at(i).second != v.back().second)
             v.push_back(timetable.at(i));
     }    
     
+    // calculating max number of workshops to attend
     int counter = 0, available = -1;
     for (int i = 0; i < v.size(); ++i){
-        if (i != v.size() - 1){
-            if (v.at(i).first >= available && v.at(i).second <= v.at(i+1).second){
-                ++counter;
-                available = v.at(i).second;
-            } 
-        }
-        else { 
-            if (v.at(i).first >= available){
-                ++counter;
-            }
-        }
+        if (v.at(i).first >= available){
+            ++counter;
+            available = v.at(i).second;
+            // cout << v.at(i).first << " : " << v.at(i).second << endl;
+        } 
     }
     return counter;
 }
 
 int main(int argc, char *argv[]) {
-
-    // 6
-    // 1 3 0 5 5 8
-    // 1 1 6 2 4 1
 
     int n; // number of workshops
     cin >> n;
