@@ -7,6 +7,7 @@
 
 using namespace std;
 
+
 struct Workshop {
     public:
         int start_time;
@@ -16,6 +17,7 @@ struct Workshop {
         Workshop() = default;
 };
 
+
 struct Available_Workshops {
     public:
         int n;
@@ -24,6 +26,7 @@ struct Available_Workshops {
         ~Available_Workshops() {delete [] arr_workers;};
 };
 
+
 Available_Workshops* initialize (int start_time[], int duration[], int n){
     Available_Workshops* av = new Available_Workshops(n);
     for (int i = 0; i < n; ++i){
@@ -31,6 +34,7 @@ Available_Workshops* initialize (int start_time[], int duration[], int n){
     }
     return av;
 };
+
 
 int CalculateMaxWorkshops(Available_Workshops* a_workshops){
     vector<pair<int, int> > timetable {};
