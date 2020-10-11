@@ -38,50 +38,57 @@ class LRUCache : public Cache {
         Node* tail; // double linked list tail pointer
         Node* head; // double linked list head pointer
     public:
-        LRUCache(int capacity): cp{capacity}, tail{nullptr}, head {nullptr} {};
+        friend ostream &operator<<(ostream& oss, const LRUCache c);
+        LRUCache(int capacity): cp{capacity}, tail{nullptr}, head {nullptr}, mp{} {};
 
         virtual void set(int key, int value){
             if (mp.empty()){
                 // create a node and direct head and tail of mp to it
                 Node* nd = new Node {key, value};
-                head = nd;
-                tail = nd;
                 mp.insert({key, nd});
+                head = mp[key];
+                tail = mp[key];
             }
             else if (mp.find(key) == mp.end()){
                 if (mp.size() == cp){
                     // redirecting last but one element in the map
-                    tail->prev->next = nullptr;
-                    Node* temp = tail->prev;
-                    
-                    // deleting last element
-                    int tempy = tail->key;
-                    mp.erase(tempy);
-                    tail = temp;
+                    int new_last_key = tail->prev->key;
+                    int last_key = tail->key;
+                    tail = mp[new_last_key];
+                    tail->next = nullptr;
+                    mp.erase(last_key);
 
                     // add a node and direct head to it and redirect other nodes
-                    Node* nd2 = new Node {nullptr, head, key, value};
-                    head->prev = nd2;
-                    head = nd2;
+                    Node* nd2 = new Node {nullptr, nullptr, key, value};
                     mp.insert({key, nd2});
+                    mp[key]->next = head;
+                    head->prev = mp[key];
+                    head = mp[key];
                 }
                 else if (mp.size() < cp){
-                    Node* nd3 = new Node {nullptr, head, key, value};
-                    head->prev = nd3;
-                    head = nd3;
+                    Node* nd3 = new Node {nullptr, nullptr, key, value};
                     mp.insert({key, nd3});
+                    mp[key]->next = head;
+                    head->prev = mp[key];
+                    head = mp[key];
                 }
             }
             else {
                 if (head->key == key){
-                    ;
+                    if (head->value != value)
+                        head->value = value;
                 }
                 else if (tail->key == key){
-                    tail->prev->next = nullptr;
-                    Node* tempy_back = tail->prev;
-                    head->prev = tail;
-                    head = tail;
-                    tail = tempy_back;
+                    int new_last_key = tail->prev->key;
+                    tail = mp[new_last_key];
+                    tail->next = nullptr;
+
+                    mp[key]->prev = nullptr;
+                    mp[key]->next = head;
+                    head->prev = mp[key];
+                    head = mp[key];
+                    if (head->value != value)
+                        head->value = value;
                 } else {
                     auto it = mp.find(key);
                     it->second->prev->next = it->second->next;
@@ -90,6 +97,8 @@ class LRUCache : public Cache {
                     it->second->prev = nullptr;
                     it->second->next = head;
                     head = it->second;
+                    if (head->value != value)
+                        head->value = value;
                 }
             }
         }
@@ -103,6 +112,23 @@ class LRUCache : public Cache {
         }
 };
 
+ostream &operator<<(ostream& oss, const LRUCache c){
+    if (c.mp.size() != 0){
+        oss << "\nBegin" << endl;
+        oss << c.head->key << ":" << c.head->value << endl;
+        Node* temp = c.head->next;
+        while (temp != NULL && temp != nullptr){
+            oss << temp->key << ":" << temp->value << endl;
+            temp = temp->next;
+        }
+        oss << "End" << endl;
+    }
+    else {
+        oss << "Empty" << endl;
+    }
+    return oss;
+}
+
 // Here ends my code
 
 int main() {
@@ -110,6 +136,7 @@ int main() {
    cin >> n >> capacity;
    LRUCache l(capacity);
    for(i=0;i<n;i++) {
+       cout << l;
       string command;
       cin >> command;
       if(command == "get") {
@@ -125,3 +152,13 @@ int main() {
    }
    return 0;
 }
+
+/*
+8 2
+set 1 2
+set 2 3
+set 3 4
+set 2 4
+set 4 5
+Segmentation fault (core dumped)
+*/
