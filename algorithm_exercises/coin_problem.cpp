@@ -1,7 +1,5 @@
 // https://edabit.com/challenge/E4MGaMxB9zGdSDdne
 
-
-
 #include <cassert>
 #include <iostream>
 
