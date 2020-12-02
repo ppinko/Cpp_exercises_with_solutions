@@ -12,8 +12,7 @@ std::vector<std::vector<int>> adjacency_list (int graph_nodes, std::vector<int> 
     std::vector<int> graph_to);
 
 std::vector<std::vector<int>> adjacency_list (int graph_nodes, std::vector<int> graph_from,
-    std::vector<int> graph_to)
-{
+    std::vector<int> graph_to){
     std::vector<std::vector<int>> result (graph_nodes + 1, std::vector<int>(0, 0));
     for (int i = 0; i < graph_from.size(); ++i)
     {
