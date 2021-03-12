@@ -31,5 +31,8 @@
 *.out
 *.app
 
+# Visual Sutdio Code files
+*.vscode*
+
 # Testing files
 *testing_area*
