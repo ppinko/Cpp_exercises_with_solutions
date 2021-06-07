@@ -77,11 +77,69 @@ TropoRecord ParseRecord(const std::vector<std::string> &line)
     record.Epoch = line[1U];
     record.Trotot = std::atof(line[2U].c_str());
     record.TrototStdDev = std::atof(line[3U].c_str());
-    record.Tgntot = atof(line[4U].c_str());
-    record.TgntotStdDev = atof(line[5U].c_str());
-    record.Tgetot = atof(line[6U].c_str());
-    record.TgetotStdDev = atof(line[7U].c_str());
+    record.Tgntot = std::atof(line[4U].c_str());
+    record.TgntotStdDev = std::atof(line[5U].c_str());
+    record.Tgetot = std::atof(line[6U].c_str());
+    record.TgetotStdDev = std::atof(line[7U].c_str());
     return record;
+}
+
+void ParseStationCoordinates(std::fstream &file)
+{
+    size_t section{0U};
+    char c{};
+    std::string currentLine{};
+    while (file.get(c))
+    {
+        if (c != '\n')
+        {
+            currentLine += c;
+        }
+        else
+        {
+            if (section == 0U)
+            {
+                if (currentLine != "*SITE PT SOLN T __STA_X_____ __STA_Y_____ __STA_Z_____ SYSTEM REMRK")
+                {
+                    throw("Wrong station coordinates header");
+                }
+                ++section;
+                currentLine.clear();
+            }
+            else if (section == 1U)
+            {
+                auto line = SplitLines(currentLine);
+                if (line.size() != 9U)
+                {
+                    throw("Wrong number of elements in station coordinates.");
+                }
+                auto const posX = atof(line[4U].c_str());
+                auto const posY = atof(line[5U].c_str());
+                auto const posZ = atof(line[6U].c_str());
+                (void)posX;
+                (void)posY;
+                (void)posZ;
+                // create ECEF position of the stations
+                ++section;
+            }
+            else if (section == 2U)
+            {
+                if (currentLine == "-TROP/STA_COORDINATES")
+                {
+                    return;
+                }
+                else
+                {
+                    throw("Station coordinates section not closed properly.");
+                }
+            }
+            else
+            {
+                throw("Station coordinates section have too many lines.");
+            }
+        }
+    }
+    throw("Reached end of the file without closing station coordinates section.");
 }
 
 void ParseSolution(std::vector<TropoRecord> &records,
@@ -124,6 +182,83 @@ void ParseSolution(std::vector<TropoRecord> &records,
         }
     }
     throw("Reached end of the file without closing solution part.");
+}
+
+void ParseDescription(std::fstream &file)
+{
+    size_t section{0U};
+    char c{};
+    std::string currentLine{};
+    while (file.get(c))
+    {
+        if (c != '\n')
+        {
+            currentLine += c;
+        }
+        else
+        {
+            if (section == 0U)
+            {
+                if (currentLine == " ELEVATION CUTOFF ANGLE")
+                {
+                    auto const line = SplitLines(currentLine);
+                    auto const _elevationCutoffAngle = std::atoi(line.back().c_str());
+                    ++section;
+                }
+                currentLine.clear();
+            }
+            else if (section == 1U)
+            {
+                if (currentLine == " SAMPLING INTERVAL")
+                {
+                    auto const line = SplitLines(currentLine);
+                    auto const _samplingInterval = std::atoi(line.back().c_str());
+                    ++section;
+                }
+                else
+                {
+                    throw("Sampling interval not found after elevation cutoff angle.");
+                }
+                currentLine.clear();
+            }
+            else if (section == 2U)
+            {
+                if (currentLine == " TROP MAPPING FUNCTION")
+                {
+                    auto const line = SplitLines(currentLine);
+                    std::string _mappingFunction{};
+                    for (size_t i{3U}; i < line.size(); ++i)
+                    {
+                        _mappingFunction += line[i];
+                        if (i != line.size() - 1U)
+                        {
+                            _mappingFunction += ' ';
+                        }
+                    }
+                    ++section;
+                }
+                currentLine.clear();
+            }
+            else if (section == 3U)
+            {
+                if (currentLine != " SOLUTION_FIELDS_1             TROTOT STDDEV TGNTOT STDDEV TGETOT STDDEV")
+                {
+                    throw("Solution fields contain unexpected values.");
+                }
+                ++section;
+                currentLine.clear();
+            }
+            else if ((section == 4U) && (currentLine == "-TROP/DESCRIPTION"))
+            {
+                return;
+            }
+            else
+            {
+                throw("Description coordinates section not closed properly.");
+            }
+        }
+    }
+    throw("Reached end of the file without closing description section.");
 }
 
 int main()
