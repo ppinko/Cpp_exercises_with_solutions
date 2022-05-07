@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 
+// https://edabit.com/challenge/z7ps9d2jmqY5ERCaT
+
 bool collision(int a, int b)
 {
     return (a > 0) && (b < 0) ? true : false;
